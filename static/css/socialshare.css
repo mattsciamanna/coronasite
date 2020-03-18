@@ -1,0 +1,68 @@
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css);
+html {
+    height: 100%;
+	background: linear-gradient(rgba(196, 102, 0, 0.6), rgba(155, 89, 182, 0.6));
+}
+body {
+     color: #333;
+	 font: normal 10.6666666667px Roboto, sans-serif;
+	 text-align: center;
+}
+ .social {
+	 margin: 20px 0 40px;
+	 text-align: center;
+}
+ .social__item {
+	 display: inline-block;
+	 margin: 10px;
+}
+ .social .fa {
+	 background: #fff;
+	 border-radius: 35px;
+	 color: #818181;
+	 cursor: pointer;
+	 display: block;
+	 font-size: 30px;
+	 height: 70px;
+	 line-height: 70px;
+	 position: relative;
+	 text-align: center;
+	 transition: all 0.2s;
+	 width: 70px;
+}
+ .social .fa:after {
+	 color: #818181;
+	 content: attr(data-count);
+	 font-size: 14px;
+	 left: 0;
+	 line-height: 20px;
+	 position: absolute;
+	 text-align: center;
+	 top: 100%;
+	 width: 100%;
+}
+ .social .fa-facebook:hover {
+	 box-shadow: 0 0 15px rgba(59, 89, 152, 0.5) inset;
+	 color: #3b5998;
+}
+ .social .fa-vk:hover {
+	 box-shadow: 0 0 15px rgba(69, 102, 142, 0.5) inset;
+	 color: #45668e;
+}
+ .social .fa-twitter:hover {
+	 box-shadow: 0 0 15px rgba(0, 172, 237, 0.5) inset;
+	 color: #00aced;
+}
+ .social .fa-pinterest:hover {
+	 box-shadow: 0 0 15px rgba(203, 32, 39, 0.5) inset;
+	 color: #cb2027;
+}
+ .social .fa-linkedin:hover {
+	 box-shadow: 0 0 15px rgba(0, 123, 182, 0.5) inset;
+	 color: #007bb6;
+}
+ .social .fa-google-plus:hover {
+	 box-shadow: 0 0 15px rgba(221, 75, 57, 0.5) inset;
+	 color: #dd4b39;
+}
+ 

@@ -1,0 +1,104 @@
+<link href="/css/socialshare.css" rel="stylesheet"> 
+<br><br>
+<h1>Share the platform</h1>
+<h3> Please consider sharing our website. <br> We also hate when people share everything they do on social media but in this case it  makes a big difference. </h3>
+<br>
+
+<div class="social">
+  <div class="social__item">
+    <span class="fa fa-facebook" data-count="..." data-social="fb"></span>
+  </div>
+  <div class="social__item">
+    <span class="fa fa-twitter" data-count="..." data-social="tw"></span>
+  </div>
+  <div class="social__item">
+    <span class="fa fa-pinterest" data-count="..." data-social="pt"></span>
+  </div>
+</div>
+<p><i>Click on Button to Share.</i></p>
+<a href="/dashboard"> No thanks, take me to the postings</a>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script> 
+/**
+* We want to share this URL, you can change it
+*/
+var shareUrl = 'https://github.com/mattsciamanna';
+
+
+var SocialShares = {
+  fb: {
+    url: "https://graph.facebook.com/?id=",
+    callback: function (data) {
+      console.log("fb", data);
+      if (data && data.shares) {
+        this.count = data.shares;
+      } else {
+        this.count = 0;
+      }
+    },
+    share: "https://www.facebook.com/sharer/sharer.php?u="
+  },
+  tw: {
+    url: "https://cdn.api.twitter.com/1/urls/count.json?url=",
+    callback: function (data) {
+      console.log("tw", data);
+      if (data && data.count) {
+        this.count = data.count;
+      } else {
+        this.count = 0;
+      }
+    },
+    share: "https://twitter.com/intent/tweet?url="
+  },
+  pt: {
+    url: "https://api.pinterest.com/v1/urls/count.json?url=",
+    callback: function (data) {
+			console.log("pt", data);
+      if (data && data.count) {
+        this.count = data.count;
+      } else {
+        this.count = 0;
+      }
+    },
+    // Have some trouble with this
+    share: "https://www.pinterest.com/pin/create/bookmarklet/?description=Help Immuno-Deficient Individuals&url="
+  },
+  
+};
+
+
+$(function () {
+  $('[data-social]').each(function () {
+    var $this = $(this),
+      social = $this.data('social'),
+      oSocial;
+
+    if (SocialShares.hasOwnProperty(social)) {
+      oSocial = SocialShares[social];
+
+      if (oSocial.url) {
+        $.getScript(
+          oSocial.url + shareUrl + "&callback=SocialShares." + social + ".callback",
+          function(data, textStatus, jqxhr) {
+            $this.attr("data-count", oSocial.count);
+          }
+        );
+      }
+      
+      if (oSocial.share) {
+        $this.on("click", function () {
+          window.open(
+            oSocial.share + shareUrl, 
+            '', 
+            'menubar=no,toolbar=no,resizable=yes' + 
+            ',scrollbars=yes' +
+            ',height=300,width=600'
+          );
+		    });
+      }
+    }
+  });
+});
+</script>
